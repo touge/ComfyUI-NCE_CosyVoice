@@ -13,7 +13,8 @@ from cosyvoice.utils.common import set_all_random_seed
 
 from functions.download_models import download_cosyvoice_300m
 from functions.cosyvoice_patches import CosyVoicePatches as CosyVoice
-from functions.utils import postprocess, get_device, generate_audio, get_speaker_folders, list_model_files
+from functions.utils import postprocess, get_device, generate_audio, get_speaker_folders, list_model_files, replace_tts_text
+from functions.text_replacer import TextReplacer
 
 # NCE 预训练音色
 class NCECosyVoiceSFT:
@@ -35,7 +36,10 @@ class NCECosyVoiceSFT:
                 }),
                  "use_25hz":("BOOLEAN",{
                     "default": False
-                }),                
+                }),
+                "polyreplace":("BOOLEAN",{
+                    "default": False
+                }),
             },
             "optional":{
                 "tts_text":("TEXT",),
@@ -46,13 +50,20 @@ class NCECosyVoiceSFT:
     RETURN_TYPES = ("AUDIO",)
     FUNCTION="generate"
 
-    def generate(self, tts_text, speed, speaker, seed, use_25hz, stream):
+    def generate(self, tts_text, speed, speaker, seed, use_25hz, stream, polyreplace=False):
         t0 = ttime()
         _, model_dir = download_cosyvoice_300m(use_25hz)
 
+        assert len(tts_text) > 0, "文本(tts_text)不能为空"
+        if polyreplace:
+            # 多音节替换
+            print("You have enabled polyphonic word replacement.")
+            tts_text = replace_tts_text(tts_text)
+            
         cosyvoice = CosyVoice(model_dir)
         set_all_random_seed(seed)
 
+        print('get inference_sft inference request')
         output = cosyvoice.inference_sft(tts_text=tts_text, spk_id=speaker, stream=stream)
         audio= generate_audio(output,t0,speed)
 
@@ -74,6 +85,9 @@ class NCECosyVoiceCrossLingual:
                 "use_25hz":("BOOLEAN",{
                     "default": False
                 }),
+                # "polyreplace":("BOOLEAN",{
+                #     "default": False
+                # }),
             },
             "optional":{
                 "tts_text":("TEXT",),
@@ -84,12 +98,17 @@ class NCECosyVoiceCrossLingual:
     RETURN_TYPES = ("AUDIO",)
     FUNCTION="generate"
 
-    def generate(self, tts_text, prompt_wav, speed, seed, use_25hz):
+    def generate(self, tts_text, prompt_wav, speed, seed, use_25hz, polyreplace=False):
         t0 = ttime()
         _, model_dir = download_cosyvoice_300m(use_25hz)
 
         assert len(tts_text) > 0, "文本(tts_text)不能为空"
         assert prompt_wav is not None, " 参考音频(prompt_wav)不能为空"
+
+        if polyreplace:
+            # 多音节替换
+            print("You have enabled polyphonic word replacement.")
+            tts_text = replace_tts_text(tts_text)
 
         waveform = prompt_wav['waveform'].squeeze(0)
         source_sr = prompt_wav['sample_rate']
@@ -130,6 +149,9 @@ class NCECosyVoiceZeroShot:
                  "use_25hz":("BOOLEAN",{
                     "default": False
                 }),
+                "polyreplace":("BOOLEAN",{
+                    "default": False
+                }),
             },
             "optional":{
                 "prompt_text":("TEXT",),
@@ -143,12 +165,18 @@ class NCECosyVoiceZeroShot:
     RETURN_TYPES = ("AUDIO", "SPEAKER_MODEL", )
     FUNCTION="generate"
 
-    def generate(self, tts_text, speed, seed, stream, use_25hz, prompt_text=None, prompt_wav=None, speaker_model=None):
+    def generate(self, tts_text, speed, seed, stream, use_25hz, prompt_text=None, prompt_wav=None, speaker_model=None, polyreplace=False):
         t0 = ttime()
         _, model_dir = download_cosyvoice_300m(use_25hz)
-        cosyvoice = CosyVoice(model_dir)
 
-        __spk_model = None
+        assert len(tts_text) > 0, "文本(tts_text)不能为空"
+        if polyreplace:
+            # 多音节替换
+            print("You have enabled polyphonic word replacement.")
+            tts_text = replace_tts_text(tts_text)
+
+        cosyvoice = CosyVoice(model_dir)
+        __spk_model = None        
 
         if speaker_model is None:
             assert len(prompt_text) > 0, "参考音频文本(prompt)不能为空"

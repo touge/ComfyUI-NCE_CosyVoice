@@ -12,6 +12,7 @@ import ffmpeg
 import folder_paths
 from time import time as ttime
 
+from functions.text_replacer import TextReplacer
 import config
 
 def get_device():
@@ -149,7 +150,6 @@ def speed_change(input_audio, speed, sr):
 
     return processed_audio
 
-
 def get_speaker_folders():
     """
     获取说话人模型文件夹列表。
@@ -175,3 +175,10 @@ def list_model_files(directory, extension=".pt"):
     files = glob.glob(pattern, recursive=True)
     model_files = [os.path.splitext(os.path.basename(file))[0] for file in files]
     return model_files
+
+
+def replace_tts_text(tts_text, file_name="多音字纠正配置.txt"):
+    replacement_file= os.path.join(config.COSYVOICE_NODE_DIR, file_name)
+    replacer = TextReplacer(tts_text, replacement_file)
+    result_string = replacer.result_string
+    return result_string
