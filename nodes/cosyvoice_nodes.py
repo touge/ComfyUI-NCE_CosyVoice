@@ -58,6 +58,57 @@ class NCECosyVoiceSFT:
 
         return (audio,)
 
+# NCE CosyVoice 跨语言克隆
+class NCECosyVoiceCrossLingual:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required":{
+                "prompt_wav": ("AUDIO",),
+                "speed":("FLOAT",{
+                    "default": 1.0
+                }),
+                "seed":("INT",{
+                    "default": 42
+                }),
+                "use_25hz":("BOOLEAN",{
+                    "default": False
+                }),
+            },
+            "optional":{
+                "tts_text":("TEXT",),
+            }
+        }
+    
+    CATEGORY = config.CATEGORY_NAME
+    RETURN_TYPES = ("AUDIO",)
+    FUNCTION="generate"
+
+    def generate(self, tts_text, prompt_wav, speed, seed, use_25hz):
+        t0 = ttime()
+        _, model_dir = download_cosyvoice_300m(use_25hz)
+
+        assert len(tts_text) > 0, "文本(tts_text)不能为空"
+        assert prompt_wav is not None, " 参考音频(prompt_wav)不能为空"
+
+        waveform = prompt_wav['waveform'].squeeze(0)
+        source_sr = prompt_wav['sample_rate']
+        speech = waveform.mean(dim=0,keepdim=True)
+        if source_sr != config.AUDIO_PROMPT_SAMPLE_RATE:
+            speech = torchaudio.transforms.Resample(orig_freq=source_sr, new_freq=config.AUDIO_PROMPT_SAMPLE_RATE)(speech)
+
+        print('get inference_cross_lingual inference request')
+        prompt_speech_16k = postprocess(speech)
+        set_all_random_seed(seed)
+
+        cosyvoice = CosyVoice(model_dir)
+        output = cosyvoice.inference_cross_lingual(tts_text=tts_text, prompt_speech_16k=prompt_speech_16k, stream=False, speed=speed)
+        audio= generate_audio(output,t0,speed)
+        
+        return (audio,)
+
+
+
 # NCE 3秒音色克隆
 class NCECosyVoiceZeroShot:
     @classmethod
@@ -186,3 +237,4 @@ class NCECosyVoiceLoadSpeakerModel:
         SPEAKER_MODEL = torch.load(full_speaker_model_path, map_location= get_device())
 
         return (SPEAKER_MODEL, )
+

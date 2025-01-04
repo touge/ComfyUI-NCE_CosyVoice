@@ -24,6 +24,10 @@ NODE_CONFIG = {
         "class": NCECosyVoiceLoadSpeakerModel,
         "name": "🎙️ CosyVoice 加载说话人模型"
     },
+    "NCECosyVoiceCrossLingual": {
+        "class": NCECosyVoiceCrossLingual,
+        "name": "🎙️ CosyVoice 跨语言克隆"
+    },
 }
 
 def generate_node_mappings(node_config):
