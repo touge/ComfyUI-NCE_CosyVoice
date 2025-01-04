@@ -1,1 +1,1 @@
-"# ComfyUI-FunAudioLLM_CosyVoice" 
+"# ComfyUI-NCE_CosyVoice" 
