@@ -42,10 +42,3 @@ class TextReplacer:
         for old, new in self.replacement_rules:
             result = result.replace(old, new)
         return result
-
-# 示例使用
-# original_string = "无论遇到什么困难，都要沉着冷静地应对，千万不要着急。"
-# replacement_file = "replacements.txt"  # 替换为你的配置文件路径
-# replacer = TextReplacer(original_string, replacement_file)
-# result_string = replacer.result_string
-# print(result_string)  # 输出: 无论遇到什么困难，都要沉浊冷静地应对，千万不要慌乱。
