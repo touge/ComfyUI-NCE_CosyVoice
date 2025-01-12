@@ -87,7 +87,7 @@ class NCECosyVoiceCrossLingual:
                 }),
             },
             "optional":{
-                "tts_text":("TEXT",),
+                "tts_text":("STRING",),
             }
         }
     
@@ -151,7 +151,7 @@ class NCECosyVoiceZeroShot:
                 }),
             },
             "optional":{
-                "prompt_text":("TEXT",),
+                "prompt_text":("STRING",),
                 "prompt_wav": ("AUDIO",),
                 "speaker_model":("SPEAKER_MODEL",),
             }
