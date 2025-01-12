@@ -42,7 +42,7 @@ class NCECosyVoiceSFT:
                 }),
             },
             "optional":{
-                "tts_text":("TEXT",),
+                "tts_text":("STRING",),
             }
         }
     
@@ -85,9 +85,6 @@ class NCECosyVoiceCrossLingual:
                 "use_25hz":("BOOLEAN",{
                     "default": False
                 }),
-                # "polyreplace":("BOOLEAN",{
-                #     "default": False
-                # }),
             },
             "optional":{
                 "tts_text":("TEXT",),
@@ -134,7 +131,7 @@ class NCECosyVoiceZeroShot:
     def INPUT_TYPES(s):
         return {
             "required":{
-                "tts_text":("TEXT", {
+                "tts_text":("STRING", {
                     "default": "",
                 }),
                 "speed":("FLOAT",{

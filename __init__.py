@@ -1,13 +1,8 @@
 
-from .nodes.text_nodes import *
 from .nodes.cosyvoice_nodes import *
 # from .nodes.speaker_nodes import *
 
 NODE_CONFIG = {
-    "NCECosyVoiceMultiText": {
-        "class": NCECosyVoiceMultiText,
-        "name": "🎙️ CosyVoice 多行文本输入"  
-    },
     "NCECosyVoiceSFT": {
         "class": NCECosyVoiceSFT,
         "name": "🎙️ CosyVoice 预训练音色"
