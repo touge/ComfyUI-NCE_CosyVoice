@@ -1,4 +1,4 @@
-"# ComfyUI-NCE_CosyVoice" 
+# ComfyUI-NCE_CosyVoice
 
 **模型下载**
 
@@ -15,4 +15,14 @@ git clone https://www.modelscope.cn/iic/CosyVoice-300M-25Hz.git CosyVoice/CosyVo
 git clone https://www.modelscope.cn/iic/CosyVoice-300M-SFT.git CosyVoice/CosyVoice-300M-SFT
 git clone https://www.modelscope.cn/iic/CosyVoice-300M-Instruct.git CosyVoice/CosyVoice-300M-Instruct
 git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git CosyVoice/CosyVoice-ttsfrd
+```
+
+# 出错解决
+
+**1. window平台下pypinyin通过pip install 失败**
+
+删掉 requirements.txt中的pypinyin，然后使用conda安装
+
+```
+conda install -c conda-forge pypinyin
 ```
