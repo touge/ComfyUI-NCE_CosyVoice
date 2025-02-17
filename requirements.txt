@@ -29,7 +29,7 @@ pydub
 audiosegment
 srt
 ffmpeg-python
-#WeTextProcessing
+WeTextProcessing
 funasr>=1.1.3
 huggingface
 huggingface_hub
