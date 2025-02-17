@@ -24,6 +24,6 @@ git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git CosyVoice/CosyVoice
 删掉 requirements.txt中的pypinyin，然后使用conda安装
 
 ```
-conda install -c conda-forge pypinyin
-conda install -c conda-forge WeTextProcessing
+conda install -c conda-forge pypinyin=2.1.6
+conda install -c conda-forge WeTextProcessing=1.0.4.1
 ```
