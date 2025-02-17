@@ -1,3 +1,5 @@
+本仓库技术底层来自：https://github.com/FunAudioLLM/CosyVoice
+
 # ComfyUI-NCE_CosyVoice
 
 **模型下载**
