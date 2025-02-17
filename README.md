@@ -25,5 +25,4 @@ git clone https://www.modelscope.cn/iic/CosyVoice-ttsfrd.git CosyVoice/CosyVoice
 
 ```
 conda install -c conda-forge pypinyin=2.1.6
-conda install -c conda-forge WeTextProcessing=1.0.4.1
 ```
