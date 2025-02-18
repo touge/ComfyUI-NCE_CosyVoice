@@ -1,5 +1,12 @@
 本仓库技术底层来自：https://github.com/FunAudioLLM/CosyVoice
 
+# 请注意，此项目依赖第三方库，请使用以下方式安装第三方库：
+```
+git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_patty/Matcha-TTS
+cd third_patty/Matcha-TTS
+pip install -r requirements.txt
+```
+
 # ComfyUI-NCE_CosyVoice
 
 **模型下载**
