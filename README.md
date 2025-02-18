@@ -15,9 +15,8 @@ cd ComfyUI-NCE_CosyVoice
 ```
 conda install -y -c conda-forge pynini==2.1.6
 ```
-4. 安装NCE_CosyVoice依赖包：
+4. 安装NCE_CosyVoice依赖包，在 ComfyUI-NCE_CosyVoice 中，安装依赖项目：
 ```
-cd ../..
 pip install -r requirements.txt
 ```
 
