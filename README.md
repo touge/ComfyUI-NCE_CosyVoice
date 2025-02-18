@@ -2,8 +2,8 @@
 
 # 请注意，此项目依赖第三方库，请使用以下方式安装第三方库：
 ```
-git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_patty/Matcha-TTS
-cd third_patty/Matcha-TTS
+git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_patty/matcha_tts
+cd third_patty/matcha_tts
 pip install -r requirements.txt
 ```
 
