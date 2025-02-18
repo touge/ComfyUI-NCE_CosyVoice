@@ -1,9 +1,23 @@
 本仓库技术底层来自：https://github.com/FunAudioLLM/CosyVoice
 
-# 请注意，此项目依赖第三方库，请使用以下方式安装第三方库：
+# 系统安装
+
+1. 首先克隆本仓库：
+```
+git clone https://github.com/touge/ComfyUI-NCE_CosyVoice
+cd ComfyUI-NCE_CosyVoice
+```
+
+2. 安装第三方依赖库：
 ```
 git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_patty/matcha_tts
 cd third_patty/matcha_tts
+pip install -r requirements.txt
+```
+
+3. 安装依赖包：
+```
+cd ../..
 pip install -r requirements.txt
 ```
 
