@@ -10,8 +10,8 @@ cd ComfyUI-NCE_CosyVoice
 
 2. 安装第三方依赖库：
 ```
-git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_patty/matcha_tts
-cd third_patty/matcha_tts
+git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_party/matcha_tts
+cd third_party/matcha_tts
 pip install -r requirements.txt
 ```
 
