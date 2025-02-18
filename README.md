@@ -18,6 +18,7 @@ pip install -r requirements.txt
 3. 安装依赖包：
 ```
 cd ../..
+conda install -y -c conda-forge pynini==2.1.6
 pip install -r requirements.txt
 ```
 
