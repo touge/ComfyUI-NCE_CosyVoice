@@ -24,7 +24,7 @@ wget
 gdown
 pyarrow
 jieba
-pypinyin
+#pypinyin
 pydub
 audiosegment
 srt
