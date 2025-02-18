@@ -14,12 +14,13 @@ git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_party/matcha_t
 cd third_party/matcha_tts
 pip install -r requirements.txt
 ```
-
-3. 安装依赖包：
+3. 安装pynini，因为pynini在pip模式下容易出错，所以采用conda安装
+```
+conda install -y -c conda-forge pynini==2.1.6
+```
+4. 安装NCE_CosyVoice依赖包：
 ```
 cd ../..
-# pynini use conda install.
-conda install -y -c conda-forge pynini==2.1.6
 pip install -r requirements.txt
 ```
 
