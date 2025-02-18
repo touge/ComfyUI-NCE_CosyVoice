@@ -9,12 +9,9 @@ cd ComfyUI-NCE_CosyVoice
 ```
 
 2. 安装第三方依赖库：
-```
-git clone https://github.com/shivammehta25/Matcha-TTS.git ./third_party/matcha_tts
-cd third_party/matcha_tts
-pip install -r requirements.txt
-```
-3. 安装pynini，因为pynini在pip模式下容易出错，所以采用conda安装
+-> 参见 third_party 目录中的README.md 文档
+
+4. 安装pynini，因为pynini在pip模式下容易出错，所以采用conda安装
 ```
 conda install -y -c conda-forge pynini==2.1.6
 ```
