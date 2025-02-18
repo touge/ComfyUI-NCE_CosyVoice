@@ -191,7 +191,7 @@ class NCECosyVoiceZeroShot:
 
             output = cosyvoice.inference_zero_shot(tts_text, prompt_text, prompt_speech_16k, stream, speed)
             audio= generate_audio(output,t0,speed)
-            __spk_model = cosyvoice.frontend.frontend_zero_shot(tts_text, prompt_text, prompt_speech_16k)
+            __spk_model = cosyvoice.frontend.frontend_zero_shot(tts_text, prompt_text, prompt_speech_16k, config.AUDIO_TARGET_SAMPLE_RATE)
             del __spk_model['text']
             del __spk_model['text_len']
 
